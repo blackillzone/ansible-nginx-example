@@ -1,0 +1,21 @@
+---
+# tasks file for nginx
+
+- name: Install nginx repos
+  yum_repository:
+    name: nginx
+    description: Official Nginx Stable Releases Repository
+    baseurl: http://nginx.org/packages/centos/7/$basearch/
+    gpgcheck: no
+    enabled: yes
+
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: Start and enable Nginx service
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
